@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Remove Image Background</title>
+  </head>
+  <style>
+    .img-wrap {
+      width: 200px;
+      height: 150px;
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    div > img {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-height: 100%;
+      min-width: 100%;
+      transform: translate(-50%, -50%);
+    }
+
+    hr {
+      border: none;
+      border-top: 3px double #333;
+      color: #333;
+      overflow: visible;
+      text-align: center;
+      height: 5px;
+    }
+
+    hr::after {
+      background: #fff;
+      content: "📷";
+      padding: 0 4px;
+      position: relative;
+      top: -13px;
+    }
+  </style>
+  <body>
+    <form action="/remove" enctype="multipart/form-data" method="POST">
+      <input name="file" type="file" accept="image/*" />
+      <input type="submit" />
+    </form>
+
+    <hr />
+
+    {% if image %}
+    <h1>Input Image</h1>
+    <img src="data:image/jpeg;base64,{{ image }}" height="200" />
+    {% else %} No Image Selected {% endif %}
+
+    {% if output_img %}
+    <h1>Output Image</h1>
+    <img src="data:image/jpeg;base64,{{ output_img }}" height="200" />
+    {% endif %}
+  </body>
+</html>
