@@ -4,25 +4,6 @@
     <title>Remove Image Background</title>
   </head>
   <style>
-    .img-wrap {
-      width: 200px;
-      height: 150px;
-      position: relative;
-      display: inline-block;
-      overflow: hidden;
-      margin: 0;
-    }
-
-    div > img {
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      min-height: 100%;
-      min-width: 100%;
-      transform: translate(-50%, -50%);
-    }
-
     hr {
       border: none;
       border-top: 3px double #333;
@@ -38,6 +19,21 @@
       padding: 0 4px;
       position: relative;
       top: -13px;
+    }
+
+    form {
+      padding: 10px;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
+
+    input[type="submit"] {
+      background-color: #333;
+      color: #fff;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
     }
   </style>
   <body>
