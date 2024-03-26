@@ -15,4 +15,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
+EXPOSE 7860
+
 CMD [ "python3", "fast_app.py" ]
