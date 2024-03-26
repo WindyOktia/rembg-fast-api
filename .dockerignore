@@ -1,0 +1,7 @@
+venv/
+test/
+__pycache__/
+*.ipynb
+.git/
+.gitignore
+.gitattributes
