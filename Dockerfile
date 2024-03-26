@@ -17,4 +17,4 @@ COPY . .
 
 EXPOSE 7860
 
-CMD [ "python3", "fast_app.py" ]
+CMD [ "python3", "app.py" ]
