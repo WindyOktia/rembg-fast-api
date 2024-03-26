@@ -39,7 +39,8 @@
   <body>
     <form action="/remove" enctype="multipart/form-data" method="POST">
       <input name="file" type="file" accept="image/*" />
-      <input type="checkbox" name="mask_only" />
+      <input type="checkbox" id="mask_only" name="mask_only" type="checkbox" />
+      <label for="mask_only">Mask Only</label>
       <input type="submit" />
     </form>
 

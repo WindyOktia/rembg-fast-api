@@ -1,8 +1,11 @@
 from rembg import remove
 import base64
 
-from fastapi import FastAPI, UploadFile, Request
+from typing import Annotated
+from fastapi import FastAPI, UploadFile, Request, Body
 from fastapi.templating import Jinja2Templates
+
+import uvicorn
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -12,7 +15,7 @@ def health(request: Request):
     return templates.TemplateResponse('dynamic.html', { "request": request })
 
 @app.post("/remove")
-def remove_bg(request: Request, file: UploadFile, mask_only: bool):
+def remove_bg(request: Request, file: UploadFile, mask_only: Annotated[bool, Body()]):
     data = file.file.read()
 
     output_array = remove(data, only_mask=mask_only)
@@ -31,3 +34,6 @@ def remove_bg(request: Request, file: UploadFile, mask_only: bool):
             "output_img" : output_img
         }
     )
+
+if __name__ == '__main__':
+    uvicorn.run(app, host='0.0.0.0', port=8000)
