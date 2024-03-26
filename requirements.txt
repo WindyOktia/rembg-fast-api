@@ -1,0 +1,2 @@
+rembg==2.0.56
+python-multipart==0.0.9
