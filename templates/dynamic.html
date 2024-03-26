@@ -39,6 +39,7 @@
   <body>
     <form action="/remove" enctype="multipart/form-data" method="POST">
       <input name="file" type="file" accept="image/*" />
+      <input type="checkbox" name="mask_only" />
       <input type="submit" />
     </form>
 
@@ -53,5 +54,7 @@
     <h1>Output Image</h1>
     <img src="data:image/jpeg;base64,{{ output_img }}" height="200" />
     {% endif %}
+
+    <script src="drag-drop.js"></script>
   </body>
 </html>
