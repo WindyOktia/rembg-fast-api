@@ -7,7 +7,7 @@ sdk: docker
 pinned: false
 ---
 
-![](https://img.shields.io/badge/docker-black?logo=docker)
+[![](https://img.shields.io/badge/docker-black?logo=docker) Docker Image](https://hub.docker.com/repository/docker/c2pcmd/remove_background_api)
 ![](https://img.shields.io/badge/FastAPI-black?logo=fastapi)
 
 ## This is a dockerized FastAPI app to remove background from images using [rembg](https://github.com/danielgatis/rembg)
