@@ -20,3 +20,9 @@ docker build -t rembgapi .
 docker run --rm -p 0.0.0.0:7860:7860 rembgapi
 ```
 Then open `http:localhost:7860/` in your browser and done!
+
+### Run with docker image directly
+```shell
+docker pull c2pcmd/remove_background_api
+docker run --rm -p 0.0.0.0:7860:7860 c2pcmd/remove_background_api
+```
