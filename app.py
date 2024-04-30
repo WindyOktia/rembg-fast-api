@@ -5,7 +5,7 @@ from rembg import remove, new_session
 from typing import Annotated
 from fastapi import FastAPI, UploadFile, Request, File, Form
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import RedirectResponse, HTMLResponse
+from fastapi.responses import RedirectResponse, HTMLResponse, Response
 
 import uvicorn
 
@@ -67,6 +67,31 @@ async def remove_bg(
         )
     except:
         return RedirectResponse("/", status_code=303)
+
+
+@app.post("/remove_bg")
+async def remove_bg(
+    request: Request,
+    file: UploadFile,
+    mask_only: str = 'off',
+    name_of_model: str = 'u2net'
+):
+    try:
+        if name_of_model not in sessions.keys():
+            sessions[name_of_model] = new_session(model_name=name_of_model)
+        
+        current_session = sessions[name_of_model]
+
+        only_mask = mask_only == 'on'
+        data = file.file.read()
+
+        output_array = remove(data, only_mask=only_mask, session=current_session)
+
+        file.file.close()
+        
+        return Response(content=output_array, media_type="image/png")
+    except Exception as error:
+        return f"Oopss!!!! {error}"
 
 @app.get("/remove")
 def remove_bg_redirect():
