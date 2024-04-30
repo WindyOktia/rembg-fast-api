@@ -47,7 +47,7 @@ async def remove_bg(
         current_session = sessions[name_of_model]
 
         only_mask = mask_only == 'on'
-        data = await file.file.read()
+        data = file.file.read()
 
         output_array = remove(data, only_mask=only_mask, session=current_session)
 
@@ -65,8 +65,14 @@ async def remove_bg(
                 "output_img" : output_img
             }
         )
-    except:
-        return RedirectResponse("/", status_code=303)
+    except Exception as error_msg:
+        return templates.TemplateResponse(
+            "error.html",
+            {
+                "request" : request,
+                "error_msg" : str(error_msg),
+            }
+        )
 
 
 @app.post("/remove_bg")
@@ -92,6 +98,7 @@ async def remove_bg(
         return Response(content=output_array, media_type="image/png")
     except Exception as error:
         return f"Oopss!!!! {error}"
+
 
 @app.get("/remove")
 def remove_bg_redirect():
