@@ -35,25 +35,84 @@
       border-radius: 3px;
       cursor: pointer;
     }
+
+    .drop-zone {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      width: 80vw;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .drop-zone.dragover {
+      background-color: #f0f0f0;
+    }
   </style>
+
   <body>
-    <form action="/remove" enctype="multipart/form-data" method="POST">
-      <input name="file" type="file" accept="image/*" />
-      <input type="checkbox" id="mask_only" name="mask_only" type="checkbox" />
-      <label for="mask_only">Mask Only</label>
-      <input type="submit" />
-    </form>
+    <div id="dropZone" class="drop-zone">
+      <h1>Remove Background from Images!</h1>
+      <form
+        id="upload_form"
+        action="/remove"
+        enctype="multipart/form-data"
+        method="POST"
+      >
+        <input id="input_image" name="file" type="file" accept="image/*" />
 
-    <hr />
+        <label for="mask_only">Mask Only</label>
+        <input
+          type="checkbox"
+          id="mask_only"
+          name="mask_only"
+          type="checkbox"
+        />
 
-    {% if image %}
-    <h1>Input Image</h1>
-    <img src="data:image/jpeg;base64,{{ image }}" height="200" />
-    {% else %} No Image Selected {% endif %}
+        <label for="name_of_model">Choose a model:</label>
 
-    {% if output_img %}
-    <h1>Output Image</h1>
-    <img src="data:image/jpeg;base64,{{ output_img }}" height="200" />
-    {% endif %}
+        <select name="name_of_model" id="name_of_model">
+          <option value="u2net">U2Net</option>
+          <option value="u2net_human_seg">U2Net Human Seg</option>
+          <option value="u2net_cloth_seg">U2Net Cloth Seg</option>
+          <option value="isnet-general-use">ISNET</option>
+        </select>
+
+        <input type="submit" />
+      </form>
+
+      <hr />
+
+      {% if image %}
+      <h1>Input Image</h1>
+      <img src="data:image/jpeg;base64,{{ image }}" height="200" />
+      {% else %} No Image Selected {% endif %} {% if output_img %}
+      <h1>Output Image</h1>
+      <img src="data:image/jpeg;base64,{{ output_img }}" height="200" />
+      {% endif %}
+
+      <h4>The available models are:</h4>
+      <ul>
+        <li><b>u2net:</b> A pre-trained model for general use cases.</li>
+        <li>
+          <b>u2net_human_seg:</b> A pre-trained model for human segmentation.
+        </li>
+        <li>
+          <b>u2net_cloth_seg:</b> A pre-trained model for Cloths Parsing from
+          human portrait. Here clothes are parsed into 3 category: Upper body,
+          Lower body and Full body. isnet-general-use: A new pre-trained model
+          for general use cases.
+        </li>
+        <li>
+          <a
+            href="https://github.com/danielgatis/rembg?tab=readme-ov-file#models"
+            >Learn More</a
+          >
+        </li>
+      </ul>
+    </div>
   </body>
 </html>
