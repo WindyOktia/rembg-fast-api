@@ -1,9 +1,5 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
 
-RUN mkdir /root/.u2net/
-
-COPY ./models/*.onnx /root/.u2net/
-
 RUN mkdir src
 RUN mkdir app
 
