@@ -26,3 +26,11 @@ Then open `http:localhost:7860/` in your browser and done!
 docker pull c2pcmd/remove_background_api
 docker run --rm -p 0.0.0.0:7860:7860 c2pcmd/remove_background_api
 ```
+
+### Live Demo on [🤗 Spaces](https://huggingface.co/spaces/c2p-cmd/remove-background-ai)
+<iframe
+	src="https://c2p-cmd-remove-background-ai.hf.space"
+	frameborder="0"
+	width="850"
+	height="450"
+></iframe>
