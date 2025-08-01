@@ -97,6 +97,7 @@ async def remove_bg(
         
         return Response(content=output_array, media_type="image/png")
     except Exception as error:
+        print("Error:", str(error))  # Add this!
         return f"Oopss!!!! {error}"
 
 
